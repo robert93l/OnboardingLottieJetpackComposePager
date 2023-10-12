@@ -31,7 +31,10 @@ class MainActivity : ComponentActivity() {
                             SplashScreen(navController = navController, context = this@MainActivity)
                         }
                         composable("Onboarding") {
-                            OnboardingScreen(navController = navController, context = this@MainActivity)
+                            OnboardingScreen(
+                                navController = navController,
+                                context = this@MainActivity
+                            )
                         }
                         composable("Home") {
                             HomeScreen()

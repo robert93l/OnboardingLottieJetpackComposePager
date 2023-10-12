@@ -1,5 +1,6 @@
 package com.example.onboardinglottieindio
 
+import android.content.Context
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -111,14 +112,15 @@ fun OnboardingScreen(navController: NavController, context: MainActivity) {
 
     ButtonsSection(
         pagerState = pagerState,
-        navController = navController
+        navController = navController,
+        context = context
     )
 
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ButtonsSection(pagerState: PagerState, navController: NavController) {
+fun ButtonsSection(pagerState: PagerState, navController: NavController, context: MainActivity) {
 
     val scope = rememberCoroutineScope()
     Box(
@@ -161,6 +163,7 @@ fun ButtonsSection(pagerState: PagerState, navController: NavController) {
         } else {
             OutlinedButton(
                 onClick = {
+                    onBoardingIsFinished(context = context)
                     navController.popBackStack()
                     navController.navigate("Home")
                 },
@@ -208,6 +211,14 @@ fun IndicatorSingleDot(isSelected: Boolean) {
             .clip(CircleShape)
             .background(if (isSelected) Color(0xFFE92F1E) else Color(0x25E92F1E))
     )
+}
+
+private fun onBoardingIsFinished(context: MainActivity) {
+    val sharedPreferences = context.getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+    val editor = sharedPreferences.edit()
+    editor.putBoolean("isFinished", true)
+    editor.apply()
+
 }
 
 

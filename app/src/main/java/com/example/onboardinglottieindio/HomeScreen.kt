@@ -9,10 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen() {
 
-    Box(modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center){
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         Text(text = "Home Screen", fontSize = 44.sp)
     }
 }
